@@ -1,17 +1,18 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import ReactDOM from "react-dom/client";
+import React from "react";
 import Login from "./Login";
-import Signup from "./Signup";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Signup from "./Signup";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <div>
+      <BrowserRouter>
         <Routes>
-          <Route path="/src/Signup.js" component={Signup} />
-          <Route path="/src/Login.js" component={Login} />
+          <Route index element={Login} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

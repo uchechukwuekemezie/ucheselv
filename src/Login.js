@@ -97,7 +97,7 @@ class Login extends React.Component {
           <div>
             <p>
               Don't have an account?
-              <Link to="/src/Signup.js">Sign up here.</Link>
+              <Link to="./Signup.js">Sign up here.</Link>
             </p>
           </div>
         </form>
