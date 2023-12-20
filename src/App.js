@@ -3,17 +3,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import ReactDOM from "react-dom/client";
 import React from "react";
 import Login from "./Login";
-// import Signup from "./Signup";
+import Signup from "./Signup";
+import Header from "./Header";
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Header />
+      <main>
         <Routes>
-          <Route index element={Login} />
+          <Route path="/" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </main>
+    </BrowserRouter>
   );
 }
 
