@@ -47,5 +47,3 @@ class UserDocument(db.Model):
     user = db.relationship('User', backref=db.backref('documents', lazy=True))
 
 
-
-
