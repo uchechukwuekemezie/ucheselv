@@ -164,4 +164,40 @@ def fund_wallet():
             flash('Payment failed. Please try again.', 'error')
 
     return render_template('fund_wallet.html', form=form)
+@main.route('/upload_document', methods=['GET', 'POST'])
+def upload_document():
+    form = DocumentUploadForm()
+    if form.validate_on_submit():
+        # Save the document and update user's verification status
+        pass
+    return render_template('upload_document.html', form=form)
 
+@main.route('/update_profile', methods=['GET', 'POST'])
+def update_profile():
+    if 'user_email' not in session:
+        flash('Please log in to update your profile.', 'warning')
+        return redirect(url_for('main.login'))
+
+    #user identification  done via email stored in session
+    user = User.query.filter_by(email=session['user_email']).first()
+    if not user:
+        flash('User not found.', 'danger')
+        return redirect(url_for('main.dashboard'))
+
+    form = DashboardForm(obj=user)
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # Update user details
+        user.name = form.name.data
+        user.address = form.address.data
+        user.bvn = form.bvn.data
+        user.nin = form.nin.data
+        user.dob = form.dob.data
+        user.employment_status = form.employment_status.data
+        user.marital_status = form.marital_status.data
+        db.session.commit()
+
+        flash('Profile updated successfully!', 'success')
+        return redirect(url_for('main.dashboard'))
+
+    return render_template('update_profile.html', form=form)
