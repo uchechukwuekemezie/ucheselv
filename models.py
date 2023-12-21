@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+
 
 db = SQLAlchemy()
 
@@ -16,6 +18,7 @@ class User(db.Model):
     dob = db.Column(db.Date)
     employment_status = db.Column(db.String(10))
     marital_status = db.Column(db.String(10))
+    wallet_balance = db.Column(db.Float, default=0.0)
 
 
 class LoanApplication(db.Model):
@@ -25,4 +28,7 @@ class LoanApplication(db.Model):
     loan_amount = db.Column(db.Float, nullable=False)
     tenure = db.Column(db.String(10), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+
+
 

@@ -1,68 +1,39 @@
+<!-- apply_loan.html -->
 {% extends 'base.html' %}
 
-{% block title %}Apply for Loan{% endblock %}
+{% block title %}Apply for a Loan{% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h2>Apply for Loan</h2>
-        <form method="post" action="{{ url_for('main.apply_loan') }}" class="needs-validation" novalidate>
-            <!-- Add form fields based on LoanApplicationForm in forms.py -->
-            {{ form.csrf_token }}
-            {{ form.hidden_tag() }}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="mb-4 text-center">Loan Application</h1>
+            <form method="post" class="needs-validation" novalidate>
+                {{ form.hidden_tag() }}
 
-            <div class="form-group">
-                {{ form.purpose.label(class="form-label") }}
-                {{ form.purpose(class="form-control", placeholder="Enter loan purpose", required=true) }}
-                <div class="invalid-feedback">
-                    Please enter the loan purpose.
+                <div class="form-group">
+                    {{ form.purpose.label(class="form-label") }}
+                    {{ form.purpose(class="form-control", required=True) }}
                 </div>
-            </div>
 
-            <div class="form-group">
-                {{ form.business_name.label(class="form-label") }}
-                {{ form.business_name(class="form-control", placeholder="Enter business name", required=true) }}
-                <div class="invalid-feedback">
-                    Please enter the business name.
+                <div class="form-group">
+                    {{ form.business_name.label(class="form-label") }}
+                    {{ form.business_name(class="form-control", required=True) }}
                 </div>
-            </div>
 
-            <div class="form-group">
-                {{ form.loan_amount.label(class="form-label") }}
-                {{ form.loan_amount(class="form-control", placeholder="Enter loan amount", required=true) }}
-                <div class="invalid-feedback">
-                    Please enter a valid loan amount.
+                <div class="form-group">
+                    {{ form.loan_amount.label(class="form-label") }}
+                    {{ form.loan_amount(class="form-control", required=True, step="0.01") }}
                 </div>
-            </div>
 
-            <div class="form-group">
-                {{ form.tenure.label(class="form-label") }}
-                {{ form.tenure(class="form-control", placeholder="Enter loan tenure", required=true) }}
-                <div class="invalid-feedback">
-                    Please enter a valid loan tenure.
+                <div class="form-group">
+                    {{ form.tenure.label(class="form-label") }}
+                    {{ form.tenure(class="form-control", required=True) }}
                 </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Apply for Loan</button>
-        </form>
+                <button type="submit" class="btn btn-primary w-100">Apply</button>
+            </form>
+        </div>
     </div>
-
-    <script>
-        // Add Bootstrap's form validation script
-        (function () {
-            'use strict';
-
-            window.addEventListener('load', function () {
-                var forms = document.getElementsByClassName('needs-validation');
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+</div>
 {% endblock %}
