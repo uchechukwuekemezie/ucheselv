@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Login.css";
 
 class Login extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Login extends React.Component {
     // Validate Email/Phone
     const emailOrPhoneRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailOrPhoneRegex.test(emailOrPhone)) {
-      errors.emailOrPhone = "Invalid email or phone format";
+      errors.emailOrPhone = "Invalid email or phone";
     }
 
     // Validate Password (at least 8 characters)
@@ -62,45 +63,52 @@ class Login extends React.Component {
     const { errors } = this.state;
 
     return (
-      <div>
+      <div className="login-div">
         <h2>Login</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Email or Phone:</label>
-            <input
-              type="text"
-              name="emailOrPhone"
-              value={this.state.emailOrPhone}
-              onChange={this.handleInputChange}
-              placeholder="Enter your email or phone"
-            />
-            {errors.emailOrPhone && (
-              <span className="error">{errors.emailOrPhone}</span>
-            )}
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              placeholder="Enter your password"
-            />
-            {errors.password && (
-              <span className="error">{errors.password}</span>
-            )}
-          </div>
-          <div>
-            <button type="submit">Login</button>
-          </div>
-          <div>
-            <p>
-              Don't have an account?
-              <Link to="./Signup.js">Sign up here.</Link>
-            </p>
-          </div>
-        </form>
+        <div className="form-div">
+          <form onSubmit={this.handleSubmit} className="form">
+            <div className="Form-container">
+              <label>Email or Phone:</label>
+              <input
+                type="text"
+                name="emailOrPhone"
+                value={this.state.emailOrPhone}
+                onChange={this.handleInputChange}
+                placeholder="Enter your email or phone"
+              />
+              {errors.emailOrPhone && (
+                <span className="error">{errors.emailOrPhone}</span>
+              )}
+
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                placeholder="Enter your password"
+              />
+              {errors.password && (
+                <span className="error">{errors.password}</span>
+              )}
+            </div>
+            <div>
+              <button type="submit">Login</button>
+            </div>
+            <div>
+              <div>
+                <img
+                  src="../public/assets/2111.w023.n001.1326B.p1.1326.jpg"
+                  alt=""
+                />
+              </div>
+              <p>
+                Don't have an account?
+                <Link to="./Signup.js">Sign up here.</Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
