@@ -1,38 +1,65 @@
+<!-- base.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Loan Web Application{% endblock %}</title>
-    <!-- Link to Bootstrap CSS from CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-primary text-white text-center py-4">
-        <h1>Loan Web Application</h1>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.index') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.signup') }}">Sign Up</a></li>
-                {% if 'user_email' in session %}
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a></li>
-                {% endif %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('main.login') }}">Login</a></li>
-            </ul>
+    <header>
+        <!-- Bootstrap Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="height: 40px;">
+                    Your App
+                </a>
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
+                        </li>
+                        {% if 'user_email' not in session %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.signup') }}">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.login') }}">Login</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
+                            </li>
+                        {% endif %}
+                    <!-- Placeholder for user profile -->
+                    <div class="user-profile-nav">
+                        {% if 'user_name' in session %}
+                            <!-- User Profile Photo -->
+                            <img src="/static/images/ese2.jpg" alt="{{ session['user_name'] }}" class="user-photo">
+
+                            <!-- User Name -->
+                            <span>{{ session['user_name'] }}</span>
+                        {% endif %}
+                    </div>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
-    
-    <main class="container mt-4">
+    <main>
         {% block content %}{% endblock %}
     </main>
-
-    <footer class="bg-primary text-white text-center py-2 mt-4">
-        <p>&copy; 2023 Loan Web Application</p>
+    <footer>
+        <!-- Add footer content here -->
+        <p>© 2023 Your Application Name</p>
     </footer>
-
-    <!-- Link to Bootstrap JS and Popper.js from CDN (if needed) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJfQ+6vCPJmIZu2Kkq5gl5v2Z8LRqTqI6enA3bW34oC07Fz8t97Oa" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyQQDlTIeHgxhjOOjB1VQbZ6sAV+O2MjM6" crossorigin="anonymous"></script>
 </body>
 </html>

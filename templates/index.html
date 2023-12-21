@@ -1,17 +1,8 @@
+<!-- index.html -->
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home Page{% endblock %}
 
 {% block content %}
-    <div class="container mt-4">
-        <h2>Welcome to the Loan Web Application</h2>
-        <p>This is the index page.</p>
-        <p>You can navigate to other pages using the links below:</p>
-        <ul class="list-group">
-            <li class="list-group-item"><a href="{{ url_for('main.signup') }}" class="btn btn-primary">Sign Up</a></li>
-            <li class="list-group-item"><a href="{{ url_for('main.login') }}" class="btn btn-success">Login</a></li>
-            <li class="list-group-item"><a href="{{ url_for('main.dashboard') }}" class="btn btn-info">Dashboard</a></li>
-            <li class="list-group-item"><a href="{{ url_for('main.apply_loan') }}" class="btn btn-warning">Apply for Loan</a></li>
-        </ul>
-    </div>
+    <h1>Welcome to Our Loan Application Service</h1>
 {% endblock %}

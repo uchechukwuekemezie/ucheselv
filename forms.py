@@ -1,6 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SelectField, DateField, DecimalField
 from wtforms.validators import DataRequired, Email, EqualTo
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+from wtforms import SubmitField
 
 
 class SignUpForm(FlaskForm):
@@ -34,3 +36,15 @@ class LoanApplicationForm(FlaskForm):
     loan_amount = DecimalField('Loan Amount', validators=[DataRequired()])
     tenure = StringField('Tenure (Months)', validators=[DataRequired()])
 
+# additional features - may be removed
+
+class WalletFundingForm(FlaskForm):
+    amount = DecimalField('Amount', validators=[DataRequired()])
+    submit = SubmitField('Fund Wallet')
+
+class DocumentUploadForm(FlaskForm):
+    document = FileField('Upload Document', validators=[
+        FileRequired(),
+        FileAllowed(['jpg', 'png', 'pdf'], 'Images and PDFs only!')
+    ])
+    submit = SubmitField('Upload')
