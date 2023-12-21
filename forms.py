@@ -42,7 +42,7 @@ class WalletFundingForm(FlaskForm):
     amount = DecimalField('Amount', validators=[DataRequired()])
     submit = SubmitField('Fund Wallet')
     class DocumentUploadForm(FlaskForm):
-    document = FileField('Upload Document', validators=[
+        document = FileField('Upload Document', validators=[
         FileRequired(),
         FileAllowed(['jpg', 'png', 'pdf'], 'Images and PDFs only!')
     ])
