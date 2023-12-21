@@ -36,3 +36,8 @@ class LoanApplicationForm(FlaskForm):
     loan_amount = DecimalField('Loan Amount', validators=[DataRequired()])
     tenure = StringField('Tenure (Months)', validators=[DataRequired()])
 
+# additional features - may be removed
+
+class WalletFundingForm(FlaskForm):
+    amount = DecimalField('Amount', validators=[DataRequired()])
+    submit = SubmitField('Fund Wallet')

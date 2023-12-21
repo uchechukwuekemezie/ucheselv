@@ -164,6 +164,7 @@ def fund_wallet():
             flash('Payment failed. Please try again.', 'error')
 
     return render_template('fund_wallet.html', form=form)
+
 @main.route('/upload_document', methods=['GET', 'POST'])
 def upload_document():
     form = DocumentUploadForm()
