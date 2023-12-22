@@ -1,8 +1,10 @@
-<!-- base.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <!-- Responsive Meta Tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -15,9 +17,15 @@
             <div class="container">
                 <!-- Logo -->
                 <a class="navbar-brand" href="{{ url_for('main.index') }}">
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="height: 40px;">
-                    Your App
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="" class="img-fluid" style="height: 40px;">
+                    UcheSelv Savings and Loans
                 </a>
+
+                <!-- Navbar Toggler -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
                 <!-- Navbar links -->
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
@@ -54,12 +62,16 @@
             </div>
         </nav>
     </header>
-    <main>
+    <main class="container mt-4">
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        <!-- Add footer content here -->
+    <footer class="container mt-4">
         <p>© 2023 Your Application Name</p>
     </footer>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
