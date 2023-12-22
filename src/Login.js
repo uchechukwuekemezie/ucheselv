@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import logo from "./logo.jpg";
 
 class Login extends React.Component {
   constructor(props) {
@@ -96,16 +97,13 @@ class Login extends React.Component {
               <button type="submit">Login</button>
             </div>
             <div>
-              <div>
-                <img
-                  src="../public/assets/2111.w023.n001.1326B.p1.1326.jpg"
-                  alt=""
-                />
-              </div>
               <p>
                 Don't have an account?
                 <Link to="./Signup.js">Sign up here.</Link>
               </p>
+              <div>
+                <img src={logo} alt="logo" srcSet="" />
+              </div>
             </div>
           </form>
         </div>
