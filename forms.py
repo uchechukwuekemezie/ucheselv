@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, DateField, DecimalField
+from wtforms import StringField, PasswordField, SelectField, DateField, DecimalField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms import SubmitField
 
 
 class SignUpForm(FlaskForm):
@@ -16,6 +15,7 @@ class SignUpForm(FlaskForm):
 class LoginForm(FlaskForm):
     email_phone = StringField('Email/Phone Number', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
+    
 
 
 class DashboardForm(FlaskForm):
@@ -48,3 +48,12 @@ class DocumentUploadForm(FlaskForm):
         FileAllowed(['jpg', 'png', 'pdf'], 'Images and PDFs only!')
     ])
     submit = SubmitField('Upload')
+
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm New Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')

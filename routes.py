@@ -8,7 +8,11 @@ from forms import WalletFundingForm, DocumentUploadForm
 from extensions import bcrypt
 from flask_login import current_user
 from flask_login import login_required
-
+from forms import ResetPasswordRequestForm, ResetPasswordForm
+from extensions import bcrypt
+from itsdangerous import URLSafeTimedSerializer
+# from flask_mail import Mail, Message
+# from app import mail 
 
 
 
@@ -202,3 +206,35 @@ def update_profile():
         return redirect(url_for('main.dashboard'))
 
     return render_template('update_profile.html', form=form)
+
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/calculator')
+def calculator():
+    return render_template('calculator.html')
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@main.route('/loans')
+def loans():
+    return render_template('loans.html')
+
+@main.route('/bills-payment')
+def bills_payment():
+    return render_template('bills_payment.html')
+
+@main.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+@main.route('/fixed-deposit')
+def fixed_deposit():
+    return render_template('fixed_deposit.html')
+
+@main.route('/savings')
+def savings():
+    return render_template('savings.html')
