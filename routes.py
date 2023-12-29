@@ -238,3 +238,18 @@ def fixed_deposit():
 @main.route('/savings')
 def savings():
     return render_template('savings.html')
+@main.route('/bills-payment')
+def bills_payment():
+    return render_template('bills_payment.html')
+
+@main.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+@main.route('/fixed-deposit')
+def fixed_deposit():
+    return render_template('fixed_deposit.html')
+
+@main.route('/savings')
+def savings():
+    return render_template('savings.html')
