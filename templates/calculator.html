@@ -2,17 +2,28 @@
 {% block content %}
 <h1>Calculators</h1>
 
-<div>
-    <h2>Loan Calculator</h2>
+<!-- Options for Calculators -->
+<div class="calculator-selector">
+    <h2>Select Calculator</h2>
+    <select id="calculatorType" onchange="showCalculator()">
+        <option value="">--Choose an Option--</option>
+        <option value="loan">Loan Calculator</option>
+        <option value="savings">Savings Calculator</option>
+    </select>
+</div>
+
+<!-- Loan Calculator -->
+<div id="loanCalculator" class="calculator" style="display:none;">
+    <h3>Loan Calculator</h3>
     <form id="loanCalculatorForm">
         <label for="loanAmount">Loan Amount:</label>
-        <input type="number" id="loanAmount" name="loanAmount" required><br><br>
+        <input type="number" id="loanAmount" name="loanAmount" required><br>
 
         <label for="interestRate">Annual Interest Rate (%):</label>
-        <input type="number" id="interestRate" name="interestRate" step="0.01" required><br><br>
+        <input type="number" id="interestRate" name="interestRate" step="0.01" required><br>
 
         <label for="loanTerm">Loan Term (years):</label>
-        <input type="number" id="loanTerm" name="loanTerm" required><br><br>
+        <input type="number" id="loanTerm" name="loanTerm" required><br>
 
         <input type="button" value="Calculate" onclick="calculateLoan()">
     </form>
@@ -20,7 +31,37 @@
     <p id="monthlyPayment">Monthly Payment: </p>
 </div>
 
+<!-- Savings Calculator -->
+<div id="savingsCalculator" class="calculator" style="display:none;">
+    <h3>Savings Calculator</h3>
+    <form id="savingsCalculatorForm">
+        <label for="initialAmount">Initial Savings Amount:</label>
+        <input type="number" id="initialAmount" name="initialAmount" required><br>
+
+        <label for="monthlySavings">Monthly Savings:</label>
+        <input type="number" id="monthlySavings" name="monthlySavings" required><br>
+
+        <label for="savingsTerm">Savings Term (years):</label>
+        <input type="number" id="savingsTerm" name="savingsTerm" required><br>
+
+        <label for="annualInterest">Annual Interest Rate (%):</label>
+        <input type="number" id="annualInterest" name="annualInterest" step="0.01" required><br>
+
+        <input type="button" value="Calculate" onclick="calculateSavings()">
+    </form>
+
+    <p id="futureValue">Future Value: </p>
+</div>
+
 <script>
+// Function to Show the Selected Calculator
+function showCalculator() {
+    var calculatorType = document.getElementById("calculatorType").value;
+    document.getElementById("loanCalculator").style.display = calculatorType === 'loan' ? 'block' : 'none';
+    document.getElementById("savingsCalculator").style.display = calculatorType === 'savings' ? 'block' : 'none';
+}
+
+// Loan Calculator Function
 function calculateLoan() {
     var loanAmount = document.getElementById("loanAmount").value;
     var interestRate = document.getElementById("interestRate").value / 100 / 12;
@@ -33,6 +74,25 @@ function calculateLoan() {
         document.getElementById("monthlyPayment").innerHTML = "Monthly Payment: " + monthly.toFixed(2);
     } else {
         document.getElementById("monthlyPayment").innerHTML = "Please check your inputs.";
+    }
+}
+
+// Savings Calculator Function
+function calculateSavings() {
+    var initialAmount = parseFloat(document.getElementById("initialAmount").value);
+    var annualInterest = parseFloat(document.getElementById("annualInterest").value) / 100;
+    var savingsTerm = parseInt(document.getElementById("savingsTerm").value);
+    var monthlySavings = parseFloat(document.getElementById("monthlySavings").value);
+
+    var futureValue = initialAmount * Math.pow(1 + annualInterest, savingsTerm);
+    for (var i = 1; i <= savingsTerm * 12; i++) {
+        futureValue += monthlySavings * Math.pow(1 + annualInterest, i / 12);
+    }
+
+    if (!isNaN(futureValue) && isFinite(futureValue)) {
+        document.getElementById("futureValue").innerHTML = "Future Value: " + futureValue.toFixed(2);
+    } else {
+        document.getElementById("futureValue").innerHTML = "Please check your inputs.";
     }
 }
 </script>

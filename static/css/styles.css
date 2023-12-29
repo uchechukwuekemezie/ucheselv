@@ -23,3 +23,56 @@ footer {
     height: 40px;
     border-radius: 20px;
 }
+
+/*footer*/
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+}
+
+.content {
+    flex: 1;  /* Flex grow to fill available space */
+}
+
+.footer {
+    background-color: #343a40; /* Dark background color */
+    color: white; /* Light text color for contrast */
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+}
+
+
+/* calculator */
+
+
+.calculator-selector, .calculator {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+.calculator-selector select, 
+.calculator input[type=number], 
+.calculator input[type=button] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+.calculator label {
+    display: block;
+    margin-bottom: 5px;
+}

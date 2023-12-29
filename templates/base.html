@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +31,33 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.about') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.calculator') }}">Calculator</a>
+                        </li>
+
+                        <!-- Products Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ url_for('main.savings') }}">Savings</a>
+                                <a class="dropdown-item" href="{{ url_for('main.loans') }}">Loans</a>
+                                <a class="dropdown-item" href="{{ url_for('main.fixed_deposit') }}">Fixed Deposit</a>
+                                <a class="dropdown-item" href="{{ url_for('main.bills_payment') }}">Bills Payment</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.faq') }}">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('main.contact') }}">Contact Us</a>
+                        </li>
+
                         {% if 'user_email' not in session %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('main.signup') }}">Sign Up</a>
@@ -46,38 +72,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.about') }}">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.calculator') }}">Calculator</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.loans') }}">Loans</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.savings') }}">Savings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.bills_payment') }}">Bills Payment</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.fixed_deposit') }}">Fixed Deposit</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('main.faq') }}">FAQ</a>
-                            </li>
                         {% endif %}
-                    <!-- Placeholder for user profile -->
-                    <div class="user-profile-nav">
-                        {% if 'user_name' in session %}
-                            <!-- User Profile Photo -->
-                            <img src="/static/images/ese2.jpg" alt="{{ session['user_name'] }}" class="user-photo">
-
-                            <!-- User Name -->
-                            <span>{{ session['user_name'] }}</span>
-                        {% endif %}
-                    </div>
                     </ul>
                 </div>
             </div>
@@ -86,13 +81,12 @@
     <main class="container mt-4">
         {% block content %}{% endblock %}
     </main>
-    <footer class="container mt-4">
-        <p>© 2023 Your Application Name</p>
+    <footer class="footer">
+        <p>© 2023 UcheSelv Savings and Loans</p>
     </footer>
 
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
