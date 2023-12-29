@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Calculators</h1>
+
+<div>
+    <h2>Loan Calculator</h2>
+    <form id="loanCalculatorForm">
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount" name="loanAmount" required><br><br>
+
+        <label for="interestRate">Annual Interest Rate (%):</label>
+        <input type="number" id="interestRate" name="interestRate" step="0.01" required><br><br>
+
+        <label for="loanTerm">Loan Term (years):</label>
+        <input type="number" id="loanTerm" name="loanTerm" required><br><br>
+
+        <input type="button" value="Calculate" onclick="calculateLoan()">
+    </form>
+
+    <p id="monthlyPayment">Monthly Payment: </p>
+</div>
+
+<script>
+function calculateLoan() {
+    var loanAmount = document.getElementById("loanAmount").value;
+    var interestRate = document.getElementById("interestRate").value / 100 / 12;
+    var loanTerm = document.getElementById("loanTerm").value * 12;
+
+    var x = Math.pow(1 + interestRate, loanTerm);
+    var monthly = (loanAmount * x * interestRate) / (x - 1);
+
+    if (!isNaN(monthly) && isFinite(monthly)) {
+        document.getElementById("monthlyPayment").innerHTML = "Monthly Payment: " + monthly.toFixed(2);
+    } else {
+        document.getElementById("monthlyPayment").innerHTML = "Please check your inputs.";
+    }
+}
+</script>
+
+{% endblock %}
