@@ -4,5 +4,35 @@
 {% block title %}Home Page{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Our Loan Application Service</h1>
+<div class="cover-photo" style="background-image: url('/static/images/FINANCIAL.jpg1.jpg');">
+    <div class="cover-content">
+        <h1>Welcome to UCHESELV SAVINGS and LOAN SERVICES</h1>
+        <p>At UCHESELV SAVINGS and LOAN SERVICES, we understand that your journey towards financial well-being is unique. Whether you're looking to secure a loan for a new venture, optimise your savings strategy, or navigate the intricacies of personal finance, we're here to guide you every step of the way.</p>
+    </div>
+</div>
+
+<div class="services-section">
+    <div class="service-item">
+        <img src="/static/images/calculate.jpeg" alt="Calculator">
+        <a href="{{ url_for('main.calculator') }}">Loans/Savings Calculator</a>
+    </div>
+    <div class="service-item">
+        <img src="/static/images/FINANCIAL.2.jpg6.jpg" alt="Loan">
+        <a href="{{ url_for('main.loans') }}">Get a Loan</a>
+    </div>
+    <div class="service-item">
+        <img src="/static/images/saves.jpeg" alt="Savings">
+        <a href="{{ url_for('main.savings') }}">Build up Savings</a>
+    </div>
+    <div class="service-item">
+        <img src="/static/images/bills.webp" alt="Bills">
+        <a href="{{ url_for('main.bills_payment') }}">Bills Payment</a>
+    </div>
+    <div class="service-item">
+        <img src="/static/images/deposit.jpeg" alt="Deposit">
+        <a href="{{ url_for('main.fixed_deposit') }}">Fixed Deposit</a>
+    </div>
+</div>
+
 {% endblock %}
+

@@ -76,3 +76,56 @@ body {
     display: block;
     margin-bottom: 5px;
 }
+
+/* index */
+
+.cover-photo {
+    background-size: cover;
+    background-position: center;
+    height: 400px; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white; /* Adjust text color for visibility */
+}
+
+.cover-content {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    padding: 20px;
+}
+
+/* Services section */
+
+.services-section {
+    display: flex;
+    justify-content: space-around;
+    background-color: #073669; /* Fine blue background */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10px; 
+}
+
+.service-item {
+    text-align: center;
+    background-color: white; 
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 18%; 
+}
+
+.service-item img {
+    max-width: 150px;
+    max-height: 70px; 
+    margin-bottom: 10px;
+}
+
+.service-item a {
+    display: block;
+    color: #333; /* Text color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
