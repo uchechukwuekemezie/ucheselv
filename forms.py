@@ -35,6 +35,8 @@ class LoanApplicationForm(FlaskForm):
     business_name = StringField('Name of Business', validators=[DataRequired()])
     loan_amount = DecimalField('Loan Amount', validators=[DataRequired()])
     tenure = StringField('Tenure (Months)', validators=[DataRequired()])
+    submit = SubmitField('Apply')
+
 
 # additional features - may be removed
 

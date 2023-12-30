@@ -24,6 +24,10 @@
                 {% if session['user_account_number'] %}
                     <p>Your account number: {{ session['user_account_number'] }}</p>
                 {% endif %}
+
+                {% if loan_application %}
+                <p>Your latest loan application status: {{ loan_application.status }}</p>
+                {% endif %}
            
             </div>
 

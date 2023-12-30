@@ -28,6 +28,8 @@ class LoanApplication(db.Model):
     loan_amount = db.Column(db.Float, nullable=False)
     tenure = db.Column(db.String(10), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    date_applied = db.Column(db.DateTime, default=datetime.utcnow) # new addition
+    status = db.Column(db.String(50), default='Pending', nullable=False)  # Added status field
 
 class WalletTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
