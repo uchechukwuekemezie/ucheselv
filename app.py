@@ -125,6 +125,21 @@ def send_loan_application_email(email, loan_application_id):
     msg.body = f'Your loan application (ID: {loan_application_id}) has been submitted for processing.'
     mail.send(msg)
 
+@app.route('/send_contact_email', methods=['POST'])
+def send_contact_email():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    message = request.form.get('message')
+
+    msg = Message("Contact Form Submission",
+                  sender=email,
+                  recipients=["amadasunese@gmail.com.com"])
+    msg.body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+    mail.send(msg)
+    flash('Your message has been sent. Thank you for contacting us!', 'success')
+    return redirect(url_for('main.contact'))
+
 
 db.init_app(app)
 bcrypt.init_app(app)

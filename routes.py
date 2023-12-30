@@ -316,3 +316,7 @@ def fixed_deposit():
 @main.route('/savings')
 def savings():
     return render_template('savings.html')
+
+@main.route('/choose_plan')
+def savings_plan():
+    return render_template('choose_plan.html')

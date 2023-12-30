@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>About Us</h1>
-<!-- Content about the company -->
+<div class="about-cover" style="background-image: url('{{ url_for('static', filename='/images/FINANCIAL.jpg1.jpg') }}');">
+    <div class="cover-content">
+        <h1>Welcome to Ucheselv Loan and Savings .</h1>
+    </div>
+</div>
+
+<div class="container about-content">
+    <h2>About Us</h2>
+    <p>Where financial dreams take flight! We're not just a company; we're your financial ally on the road to prosperity. With Ucheselv, your goals are our mission, and your success is our passion. Join us for a journey of smart savings and seamless loans – because your dreams deserve a partner as bold as you are!</p>
+</div>
 {% endblock %}
