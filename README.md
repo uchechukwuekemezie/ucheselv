@@ -1,4 +1,3 @@
-Certainly! Here's the updated README.md with the link to view the site:
 
 ```markdown
 # Treasure Trove Savings, Loan, and Services App
@@ -90,16 +89,16 @@ To install the Treasure Trove app, follow these steps:
 
 ### Frontend
 - HTML
-- JavaScript
 - CSS
+- JavaScript
 - Bootstrap
 
 ### Backend
-- Node.js
-- Express.js
+- Python
+- Flask
 
 ### Database
-- MongoDB
+- SQLAlchemy
 
 ### Authentication
 - JWT (JSON Web Tokens)
@@ -128,6 +127,4 @@ This project is licensed under the [MIT License](LICENSE). See the [LICENSE](LIC
 - [Ese Amadasun](https://github.com/amadasunese)
 - [Kelvin Agimogim](https://github.com/kingkelv20)
 - [Uchechukwu Ekemezie](https://github.com/uchechukwuekemezie)
-```
-
-Make sure to replace "your-username" with your actual GitHub username.
+``
