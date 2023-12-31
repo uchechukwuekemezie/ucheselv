@@ -1,5 +1,4 @@
 
-```markdown
 # Treasure Trove Savings, Loan, and Services App
 
 Welcome to the Treasure Trove Savings, Loan, and Services App! This application is designed to provide users with a comprehensive platform for managing their savings, applying for loans, and accessing various financial services. Whether you're an individual looking to save money, apply for a loan, or explore financial tools, this app has you covered.
@@ -39,34 +38,6 @@ Welcome to the Treasure Trove Savings, Loan, and Services App! This application 
 
 7. **Customer Support**: Connect with customer support for assistance, inquiries, and issue resolution.
 
-## Installation
-
-To install the Treasure Trove app, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/treasure-trove-app.git
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd treasure-trove-app
-   ```
-
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-4. Set up the required configurations, such as database connection and API keys.
-
-5. Start the application:
-   ```bash
-   npm start
-   ```
-
-6. Open your web browser and navigate to [http://localhost:3000](http://localhost:3000) to use the app.
-
 ## Usage
 
 1. **Home**: Navigate to the home page to get an overview of the Treasure Trove Savings, Loan, and Services App.
@@ -87,7 +58,7 @@ To install the Treasure Trove app, follow these steps:
 
 ## Technologies Used
 
-### Frontend
+**Frontend**
 - HTML
 - CSS
 - JavaScript
@@ -100,14 +71,8 @@ To install the Treasure Trove app, follow these steps:
 ### Database
 - SQLAlchemy
 
-### Authentication
-- JWT (JSON Web Tokens)
 
-### UI Framework
-- Material-UI
-
-### Other Technologies
-- npm
+**Other Technologies**
 - Git
 
 ## View the Site
