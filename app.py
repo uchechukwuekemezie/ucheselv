@@ -20,6 +20,14 @@ from forms import SignUpForm, LoginForm, DashboardForm, LoanApplicationForm, Wal
 
 app = Flask(__name__)
 
+#@app.before_first_request
+def create_admin():
+    if not User.query.filter_by(email="amadasunese@gmail.com").first():
+        hashed_password = hash_password('1234567')
+        admin_user = User(name="Admin", email="amadasunese@gmail.com", password=hashed_password, is_admin=True)
+        db.session.add(admin_user)
+        db.session.commit()
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "secret_key"
@@ -34,6 +42,7 @@ app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = 'amadasunese@gmail.com'
 app.config["MAIL_PASSWORD"] = 'qxxo axga dzia jjsw'
 mail = Mail(app)
+
 
 
 s = URLSafeTimedSerializer(app.config['SECRET_KEY'])
@@ -141,6 +150,7 @@ def send_contact_email():
     return redirect(url_for('main.contact'))
 
 
+
 db.init_app(app)
 bcrypt.init_app(app)
 
@@ -156,6 +166,18 @@ def load_user(user_id):
 
 with app.app_context():
     db.create_all()
+
+
+# # with app.app_context():
+#     if not User.query.filter_by(email="amadasunese@gmail.com").first():
+#         admin_user = User(
+#             name="Admin",
+#             email="amadasunese@gmail.com",
+#             password=bcrypt.generate_password_hash('1234567').decode('utf-8'),
+#             is_admin=True
+#         )
+#         db.session.add(admin_user)
+#         db.session.commit()
 
 app.register_blueprint(main)
 

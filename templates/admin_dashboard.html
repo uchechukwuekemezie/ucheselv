@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h1>Admin Dashboard</h1>
+    <div class="admin-links">
+        <a href="{{ url_for('admin_users') }}">Manage Users</a>
+        <a href="{{ url_for('admin_loan_applications') }}">Loan Applications</a>
+        <a href="{{ url_for('admin_savings_applications') }}">Savings Applications</a>
+        <!-- Add more links as needed -->
+    </div>
+</div>
+{% endblock %}

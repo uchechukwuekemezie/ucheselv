@@ -19,6 +19,7 @@ class User(db.Model):
     employment_status = db.Column(db.String(10))
     marital_status = db.Column(db.String(10))
     wallet_balance = db.Column(db.Float, default=0.0)
+    is_admin = db.Column(db.Boolean, default=False)
 
 
 class LoanApplication(db.Model):
@@ -30,6 +31,7 @@ class LoanApplication(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_applied = db.Column(db.DateTime, default=datetime.utcnow) # new addition
     status = db.Column(db.String(50), default='Pending', nullable=False)  # Added status field
+    
 
 class WalletTransaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)

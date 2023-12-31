@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
+from flask import Blueprint, render_template, request, redirect, url_for, session, flash, abort
 from forms import SignUpForm, LoginForm, DashboardForm, LoanApplicationForm, WalletFundingForm, DashboardForm
 from models import db, User, LoanApplication
 import random
@@ -320,3 +320,36 @@ def savings():
 @main.route('/choose_plan')
 def savings_plan():
     return render_template('choose_plan.html')
+
+@main.route('/admin/dashboard')
+@login_required
+def admin_dashboard():
+    if not current_user.is_admin:
+        abort(403)
+    # Additional logic if necessary
+    return render_template('admin_dashboard.html')
+
+@main.route('/admin/users')
+@login_required
+def admin_users():
+    if not current_user.is_admin:
+        abort(403)
+    users = User.query.all()
+    return render_template('admin_users.html', users=users)
+
+@main.route('/admin/loan-applications')
+@login_required
+def admin_loan_applications():
+    if not current_user.is_admin:
+        abort(403)
+    loan_applications = LoanApplication.query.filter_by(approval_status='pending').all()
+    return render_template('admin_loan_applications.html', loan_applications=loan_applications)
+
+@main.route('/admin/savings-applications')
+@login_required
+def admin_savings_applications():
+    if not current_user.is_admin:
+        abort(403)
+    # Assuming you have a SavingsApplication model
+    savings_applications = SavingsApplication.query.filter_by(approval_status='pending').all()
+    return render_template('admin_savings_applications.html', savings_applications=savings_applications)

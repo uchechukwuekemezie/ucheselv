@@ -1,5 +1,74 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>FAQ</h1>
-<!-- List of Frequently Asked Questions and Answers -->
+<div class="container mt-4">
+    <h1>Frequently Asked Questions</h1>
+    
+    <div id="faq-accordion">
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq1')">What loan services do you offer?</button>
+            <div class="faq-answer" id="faq1">
+                <p>We offer a range of loan services including personal loans, business loans, and mortgage loans tailored to meet various needs.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq2')">How can I apply for a loan?</button>
+            <div class="faq-answer" id="faq2">
+                <p>You can apply for a loan through our website by filling out the loan application form or visiting one of our branches.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq3')">What are the requirements for loan approval?</button>
+            <div class="faq-answer" id="faq3">
+                <p>Loan approval requirements include proof of income, credit history, and a valid ID. Additional documents may be requested based on the loan type.</p>
+            </div>
+        </div>
+
+        <!-- Add more FAQs as needed -->
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq4')">Is there a penalty for early loan repayment?</button>
+            <div class="faq-answer" id="faq4">
+                <p>No, we encourage early repayment and do not charge any penalties for settling your loan ahead of schedule.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq5')">How do I open a savings account?</button>
+            <div class="faq-answer" id="faq5">
+                <p>You can open a savings account online through our website or by visiting a branch. You'll need a valid ID and initial deposit.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq6')">What are the interest rates on your savings accounts?</button>
+            <div class="faq-answer" id="faq6">
+                <p>Our savings account interest rates vary but are highly competitive. Please check our website or contact us for current rates.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq7')">Can I manage my account online?</button>
+            <div class="faq-answer" id="faq7">
+                <p>Yes, we offer online banking services that allow you to manage your accounts, make transactions, and more, all from the comfort of your home.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq('faq8')">What should I do if I notice unauthorized transactions on my account?</button>
+            <div class="faq-answer" id="faq8">
+                <p>If you notice any unauthorized transactions, please contact us immediately. We have measures in place to secure your account and address such issues promptly.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleFaq(faqId) {
+    var answer = document.getElementById(faqId);
+    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
 {% endblock %}

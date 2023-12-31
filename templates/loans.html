@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Loans</h1>
-<!-- Information about Personal Loans and Business Loans -->
+<div class="loans-cover" style="background-image: url('{{ url_for('static', filename='images/loans.jpg') }}');">
+    <div class="cover-text">
+        <h1>Find the Right Loan for You</h1>
+    </div>
+</div>
+
+<div class="container loan-content">
+    <h2>Our Loan Services</h2>
+    <p>At Ucheselv Loan and Savings Ltd., we understand that everyone's financial needs are unique. That's why we offer a range of loan options to suit your specific needs. Whether you're looking to start a new business, finance a personal project, or need a quick cash influx, we have a solution for you.</p>
+    <p><strong>Personal Loans:</strong> Flexible loans for personal expenses, home improvements, or debt consolidation.</p>
+    <p><strong>Business Loans:</strong> Tailored solutions to help your business grow, from startup funding to expansion capital.</p>
+
+    <div class="loan-links">
+        <a href="{{ url_for('main.apply_loan') }}" class="loan-link">Apply for a Loan</a>
+        <a href="{{ url_for('main.calculator') }}" class="loan-link">Loan Calculator</a>
+    </div>
+</div>
 {% endblock %}
