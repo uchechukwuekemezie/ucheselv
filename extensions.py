@@ -1,6 +1,5 @@
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
-# from app import mail
 
 bcrypt = Bcrypt()
 mail = Mail()

@@ -3,20 +3,12 @@ from forms import SignUpForm, LoginForm, DashboardForm, LoanApplicationForm, Wal
 from models import db, User, LoanApplication
 import random
 from forms import WalletFundingForm, DocumentUploadForm
-#from .app import bcrypt 
-#from flask_bcrypt import Bcrypt
 from extensions import bcrypt, mail
 from flask_login import current_user
 from flask_login import login_required
 from forms import ResetPasswordRequestForm, ResetPasswordForm
-# from extensions import bcrypt, mail
 from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
-# from app import mail 
-# from app import db
-
-
-
 
 
 main = Blueprint('main', __name__)
@@ -78,44 +70,6 @@ def login():
     return render_template('login.html', form=form)
 
 
-# @main.route('/dashboard', methods=['GET', 'POST'])
-# def dashboard():
-#     if 'user_email' not in session:
-#         flash('Please log in to access the dashboard.', 'warning')
-#         return redirect(url_for('main.login'))
-
-#     form = DashboardForm(request.form)
-
-#     if request.method == 'POST' and form.validate():
-#         # Dashboard logic here
-#         # Get user details from the form
-#         name = request.form['name']
-#         address = request.form['address']
-#         bvn = request.form['bvn']
-#         nin = request.form['nin']
-#         dob = request.form['dob']
-#         employment_status = request.form['employment_status']
-#         marital_status = request.form['marital_status']
-
-#         # Generate a random 10-digit account number
-#         account_number = ''.join(str(random.randint(0, 9)) for _ in range(10))
-
-#         # Store user account details in the dictionary 
-#         users[account_number] = {
-#             'name': name,
-#             'address': address,
-#             'bvn': bvn,
-#             'nin': nin,
-#             'dob': dob,
-#             'employment_status': employment_status,
-#             'marital_status': marital_status,
-#             'account_number': account_number
-#         }
-#         return redirect(url_for('main.apply_loan'))
-
-#     return render_template('dashboard.html', form=form)
-
-
 @main.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if 'user_email' not in session:
@@ -151,68 +105,6 @@ def dashboard():
     return render_template('dashboard.html', form=form)
 
 
-
-# @main.route('/apply_loan', methods=['GET', 'POST'])
-# def apply_loan():
-#     if 'user_email' not in session:
-#         flash('Please log in to apply for a loan.', 'warning')
-#         return redirect(url_for('main.login'))
-
-#     form = LoanApplicationForm(request.form)
-
-#     if request.method == 'POST' and form.validate():
-#         # Get loan application details from the form
-#         purpose = form.purpose.data
-#         business_name = form.business_name.data
-#         loan_amount = form.loan_amount.data
-#         tenure = form.tenure.data
-
-#         # Perform loan application processing
-#         print(f"Loan Application Received: {purpose}, {business_name}, {loan_amount}, {tenure}")
-
-#         # For now, redirect to a placeholder 'repayment_plan' page
-#         return render_template('repayment_plan.html')
-
-#     return render_template('apply_loan.html', form=form)
-
-# @main.route('/apply_loan', methods=['GET', 'POST'])
-# def apply_loan():
-#     if 'user_email' not in session:
-#         flash('Please log in to apply for a loan.', 'warning')
-#         return redirect(url_for('main.login'))
-
-#     user = User.query.filter_by(email=session['user_email']).first()
-#     if not user:
-#         flash('User not found.', 'error')
-#         return redirect(url_for('main.login'))
-
-#     form = LoanApplicationForm(request.form)
-#     if request.method == 'POST' and form.validate():
-#         # Create a new loan application instance
-#         loan_application = LoanApplication(
-#             user_id=user.id,
-#             purpose=form.purpose.data,
-#             business_name=form.business_name.data,
-#             loan_amount=form.loan_amount.data,
-#             tenure=form.tenure.data
-#             # Add any other fields as necessary
-#         )
-#         db.session.add(loan_application)
-#         db.session.commit()
-
-#         # Send email notification (optional)
-#         send_loan_application_email(email, loan_application.id)
-
-#         flash('Loan application submitted successfully.', 'success')
-#         return redirect(url_for('main.dashboard'))  # or any other appropriate route
-
-#     return render_template('apply_loan.html', form=form)
-
-# def send_loan_application_email(email, loan_application_id):
-#     msg = Message('Loan Application Submitted', recipients=[email])
-#     msg.body = f'Your loan application (ID: {loan_application_id}) has been submitted for processing.'
-#     mail.send(msg)
-
 #Add a route for logging out
 @main.route('/logout')
 def logout():
@@ -221,7 +113,7 @@ def logout():
     flash('You have been logged out.', 'info')
     return redirect(url_for('main.index'))
 
-# additional features - may be removed
+# additional features
 
 @main.route('/fund_wallet', methods=['GET', 'POST'])
 @login_required
@@ -350,6 +242,6 @@ def admin_loan_applications():
 def admin_savings_applications():
     if not current_user.is_admin:
         abort(403)
-    # Assuming you have a SavingsApplication model
+    # SavingsApplication model
     savings_applications = SavingsApplication.query.filter_by(approval_status='pending').all()
     return render_template('admin_savings_applications.html', savings_applications=savings_applications)
