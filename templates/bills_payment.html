@@ -1,5 +1,66 @@
 {% extends 'base.html' %}
+
+{% block title %}Bills Payment{% endblock %}
+
 {% block content %}
-<h1>Bills Payment</h1>
-<!-- Bills Payment Services Information -->
+    
+<div class="content-wrapper">
+    <!-- Cover Photo Section -->
+    <div class="cover-photo">
+        <img src="/static/images/online_bills.jpg" alt="Cover Photo">
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h1>Welcome to our Bills Payment Service!</h1>
+        <h3>What are you purchasing today? Choose from our range of services listed below.</h3>
+
+        <div class="services-row">
+            <!-- Electricity Payment Option -->
+            <div class="bill-service">
+                <img src="/static/images/electricity.png" alt="Electricity">
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                    <!-- Hidden fields for electricity payment -->
+                    <button type="submit">Pay for Electricity</button>
+                </form>
+            </div>
+
+            <!-- Airtime Payment Option -->
+            <div class="bill-service">
+                <img src="/static/images/airtime.png" alt="Airtime">
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                    <!-- Hidden fields for airtime payment -->
+                    <button type="submit">Buy Airtime</button>
+                </form>
+            </div>
+
+            <!-- Cable TV Payment Option -->
+            <div class="bill-service">
+                <img src="/static/images/PayTV.png" alt="Cable TV">
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                    <!-- Hidden fields for cable TV payment -->
+                    <button type="submit">Pay for Cable TV</button>
+                </form>
+            </div>
+
+            <!-- Internet Payment Option -->
+            <div class="bill-service">
+                <img src="/static/images/internet.jpg" alt="Internet Service">
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                    <!-- Hidden fields for internet payment -->
+                    <button type="submit">Pay for Internet</button>
+                </form>
+            </div>
+
+            <!-- Betting Payment Option -->
+            <div class="bill-service">
+                <img src="/static/images/bet.jpg" alt="Betting">
+                <form method="POST" action="https://checkout.flutterwave.com/v3/hosted/pay">
+                    <!-- Hidden fields for betting payment -->
+                    <button type="submit">Betting Payment</button>
+                </form>
+            </div>
+    </div>
+</div>
+
 {% endblock %}
