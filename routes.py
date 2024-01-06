@@ -209,9 +209,9 @@ def fixed_deposit():
 def savings():
     return render_template('savings.html')
 
-@main.route('/choose_plan')
+@main.route('/savings_plan')
 def savings_plan():
-    return render_template('choose_plan.html')
+    return render_template('savings_plan.html')
 
 @main.route('/admin/dashboard')
 @login_required
