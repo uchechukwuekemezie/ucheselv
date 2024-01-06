@@ -163,7 +163,6 @@ body {
     padding: 20px;
 }
 
-/* Existing styles */
 .savings-intro {
     text-align: center;
     margin-top: -0px; 
@@ -219,7 +218,7 @@ body {
 .loans-cover {
     background-size: cover;
     background-position: center;
-    height: 400px; /* Adjust the height as needed */
+    height: 400px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,7 +226,7 @@ body {
 }
 
 .cover-text {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for text readability */
+    background-color: rgba(0, 0, 0, 0.5); 
     padding: 20px;
 }
 
@@ -277,23 +276,14 @@ body {
     text-align: center;
 }
 
-.cover-photo img {
+.cover-photo_bp img {
     max-width: 100%;
-    height: auto;
-
-
-
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    
+    height: auto;  
+    margin-top: 5px;  
 }
 
 .services {
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
 .services-row {
