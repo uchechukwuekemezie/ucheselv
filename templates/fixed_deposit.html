@@ -14,8 +14,8 @@
     
     <p>Our Fixed Deposit accounts come with features like auto-renewal options, loan facilities against deposits, and flexible interest payouts. Tailor your deposit plan as per your convenience and financial goals.</p>
     
-    <p>Not sure which plan is right for you? Our <a href="#savings-calculator" class="link">Savings Growth Calculator</a> can help you estimate your potential earnings. For more personalized guidance, our team of dedicated financial advisors is here to assist you.</p>
+    <p>Not sure which plan is right for you? Our <a href="{{ url_for('main.calculator') }}" class="link">Savings Growth Calculator</a> can help you estimate your potential earnings. For more personalized guidance, our team of dedicated financial advisors is here to assist you.</p>
     
-    <p><a href="#get-started" class="btn btn-primary_fd">Get Started with a Fixed Deposit</a> or <a href="#contact-advisor" class="btn btn-secondary_fd">Contact an Advisor</a> to explore the best options for your savings.</p>
+    <p><a href="#get-started" class="btn btn-primary_fd">Get Started with a Fixed Deposit</a> or <a href="{{ url_for('main.contact') }}" class="btn btn-secondary_fd">Contact an Advisor</a> to explore the best options for your savings.</p>
 </div>
 {% endblock %}

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
+{% block title %}Pending Savings Applications{% endblock %}
 {% block content %}
-<h2>Pending Savings Applications</h2>
-<!-- Structure similar to admin_users.html but for savings applications -->
+<div class="container mt-4">
+    <h2>Pending Savings Applications</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>User</th>
+                <th>Savings Type</th>
+                <th>Savings Frequency</th>
+                <th>Initial Payment Amount</th>
+                <th>Payment Frequency</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for savings_application in pending_savings_applications %}
+            <tr>
+                <td>{{ savings_application.id }}</td>
+                <td>{{ savings_application.user.name }}</td>
+                <td>{{ savings_application.savings_type }}</td>
+                <td>{{ savings_application.savings_frequency }}</td>
+                <td>{{ savings_application.initial_payment_amount }}</td>
+                <td>{{ savings_application.payment_frequency }}</td>
+                <td>{{ savings_application.payment_method }}</td>
+                <td>{{ savings_application.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
+

@@ -15,6 +15,7 @@ from flask import redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash
 from flask_mail import Mail, Message
 from forms import LoanApplicationForm
+import requests
 
 
 app = Flask(__name__)
@@ -61,6 +62,32 @@ def send_password_reset_email(user):
         f"{url_for('main.reset_password', token=token, _external=True)}"
     )
     mail.send(msg)
+
+
+# Bills payment using Flutterwave
+PUBLIC_KEY = "FLWPUBK_TEST-ff8e559f2076796fb3ce543f8378ec5c-X"
+SECRET_KEY = "FLWSECK_TEST-cab7c40fc5844d3a5545e07948c9cd77-X"
+
+
+@main.route('/bills-payment')
+def bills_payment():
+    headers = {
+        'Authorization': f'Bearer {SECRET_KEY}'
+    }
+    try:
+        # Fetch bill categories from Flutterwave
+        response = requests.get(
+            "https://api.flutterwave.com/v3/bill-categories",
+            headers=headers
+        )
+        bill_categories = response.json().get('data', [])
+
+        # Render the bills_payment.html page with the bill categories
+        return render_template('bills_payment.html',
+                               bill_categories=bill_categories)
+    except Exception as e:
+        print(f'Error fetching bill categories: {e}')
+        return render_template('error.html')
 
 
 @main.route('/reset_password_request', methods=['GET', 'POST'])

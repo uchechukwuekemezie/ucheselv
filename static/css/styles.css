@@ -13,7 +13,6 @@ footer {
 }
 
 .user-profile-nav {
-    /* Styling for the user profile section in the navigation bar */
     float: right;
 }
 
@@ -425,4 +424,54 @@ button:hover {
     border-color: #0f75db;
 }
 
-/* Additional styling as needed */
+/* updatae profile form */
+
+/* Style for flash messages */
+.alert {
+    margin-top: 20px;
+}
+
+/* Style for the form container */
+.container {
+    margin-top: 10px;
+}
+
+/* Style for form labels */
+.form-label {
+    font-weight: bold;
+}
+
+/* Style for form input fields */
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Style for form input fields */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Style for the "Update" button */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    margin-bottom: 60px;
+}
+
+/* Center the "Update" button */
+.btn-block {
+    margin-top: 20px;
+}
+
+
+/* invest page */
+.container_inv {
+    background-image: url("{{ url_for('static', filename='images/invest.jpg') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}

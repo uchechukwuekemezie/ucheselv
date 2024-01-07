@@ -7,37 +7,84 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
-            {% if 'user_name' in session %}
-                <h1 class="mb-4 text-center">Welcome, {{ session['user_name'] }}!</h1>
-            {% else %}
-                <h1 class="mb-4 text-center">User Dashboard</h1>
-            {% endif %}
 
-            <!-- User Profile Section -->
-            <div class="user-profile mb-4">
-                <h3>User Details</h3>
-                <p><strong>Name:</strong> {{ session['user_name'] }}</p>
-                <p><strong>Email:</strong> {{ session['user_email'] }}</p>
-
-                <h1 class="mb-4 text-center">Welcome, {{ session['user_email'] }}</h1>
-                <!-- Display the user's account number if available -->
-                {% if session['user_account_number'] %}
-                    <p>Your account number: {{ session['user_account_number'] }}</p>
+            <!-- Welcome Message -->
+            <div class="text-center mb-4">
+                {% if 'user_name' in session %}
+                    <h1>Welcome, {{ session['user_name'] }}!</h1>
+                {% else %}
+                    <h1>User Dashboard</h1>
                 {% endif %}
-
-                {% if loan_application %}
-                <p>Your latest loan application status: {{ loan_application.status }}</p>
-                {% endif %}
-           
             </div>
 
-            <!-- Link to Update Profile Form -->
-            <a href="{{ url_for('main.update_profile') }}" class="btn btn-primary w-100 mb-3">Update Profile</a>
+            <!-- User Profile and Fund Wallet Sections in Two Columns -->
+            <div class="row">
+                <!-- User Profile Section (Left Box) -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            User Details
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Name:</strong> {{ session['user_name'] }}</p>
+                            <p><strong>Email:</strong> {{ session['user_email'] }}</p>
+                            <p><strong>Account Number:</strong> {{ session['user_account_number'] }}</p>
 
-            <!-- Other Dashboard Links -->
-            <a href="{{ url_for('main.apply_loan') }}" class="btn btn-secondary w-100 mb-3">Apply for a Loan</a>
-            <a href="{{ url_for('main.fund_wallet') }}" class="btn btn-info w-100 mb-3">Fund Your Wallet</a>
-            <a href="{{ url_for('main.upload_document') }}" class="btn btn-success w-100">Upload Documents</a>
+                            <!-- Display loan application status -->
+                            {% if loan_application %}
+                                <p><strong>Latest Loan Application Status:</strong> {{ loan_application.status }}</p>
+                            {% else %}
+                                <p><strong>Loan Application Status:</strong> No loan application submitted</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fund Wallet Section (Right Box) -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            Your Wallet
+                        </div>
+                        <div class="card-body">
+                            <p>Your current wallet balance: {{ current_user.wallet_balance }}</p>
+                            <a href="{{ url_for('main.fund_wallet') }}" class="btn btn-primary">Add Fund</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Links in Horizontal Boxes -->
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.update_profile') }}" class="btn btn-info btn-block mb-3">
+                        <i class="fas fa-user"></i> Update Profile
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.apply_loan') }}" class="btn btn-info btn-block mb-3">
+                        <i class="fas fa-money-bill-wave"></i> Apply for a Loan
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.invest') }}" class="btn btn-info btn-block mb-3">
+                        <i class="fas fa-piggy-bank"></i> Invest
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.fund_wallet') }}" class="btn btn-info btn-block mb-3">
+                        <i class="fas fa-wallet"></i> Fund Your Wallet
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.upload_document') }}" class="btn btn-info btn-block">
+                        <i class="fas fa-upload"></i> Upload Documents</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="{{ url_for('main.bills_payment') }}" class="btn btn-info btn-block">
+                        <i class="fas fa-upload"></i> Pay Your Bills</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

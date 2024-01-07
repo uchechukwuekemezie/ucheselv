@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}View Savings Applications{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>View Savings Applications</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Savings Type</th>
+                    <th>Initial Payment Amount</th>
+                    <th>Savings Frequency</th>
+                    <th>Method of Payment</th>
+                    <!-- Add more table headers for other fields -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for application in applications %}
+                    <tr>
+                        <td>{{ application.id }}</td>
+                        <td>{{ application.savings_type }}</td>
+                        <td>{{ application.initial_payment_amount }}</td>
+                        <td>{{ application.savings_frequency }}</td>
+                        <td>{{ application.method_of_payment }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

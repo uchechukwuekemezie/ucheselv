@@ -8,9 +8,18 @@
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         {% endif %}
     {% endwith %}
 
@@ -55,7 +64,7 @@
                     {{ form.marital_status(class="form-control", required=True) }}
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Update</button>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
             </form>
         </div>
     </div>

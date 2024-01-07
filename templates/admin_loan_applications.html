@@ -1,5 +1,34 @@
 {% extends 'base.html' %}
+{% block title %}Pending Loan Applications{% endblock %}
 {% block content %}
-<h2>Pending Loan Applications</h2>
-<!-- Structure similar to admin_users.html but for loan applications -->
+<div class="container mt-4">
+    <h2>Pending Loan Applications</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>User</th>
+                <th>Purpose</th>
+                <th>Business Name</th>
+                <th>Loan Amount</th>
+                <th>Tenure</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan_application in pending_loan_applications %}
+            <tr>
+                <td>{{ loan_application.id }}</td>
+                <td>{{ loan_application.user.name }}</td>
+                <td>{{ loan_application.purpose }}</td>
+                <td>{{ loan_application.business_name }}</td>
+                <td>{{ loan_application.loan_amount }}</td>
+                <td>{{ loan_application.tenure }}</td>
+                <td>{{ loan_application.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
+
