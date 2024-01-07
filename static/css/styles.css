@@ -475,3 +475,34 @@ button:hover {
     background-attachment: fixed;
     background-position: center center;
 }
+
+/* reset_password.css */
+
+/* Style the form input and submit button */
+.resetform {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.resetform input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.resetform input[type="submit"] {
+    width: 100px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.resetform input[type="submit"]:hover {
+    background-color: #0056b3;
+}
