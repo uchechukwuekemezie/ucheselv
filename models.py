@@ -21,6 +21,8 @@ class User(db.Model):
     wallet_balance = db.Column(db.Float, default=0.0)
     is_admin = db.Column(db.Boolean, default=False)
 
+    
+
 
 class LoanApplication(db.Model):
     id = db.Column(db.Integer, primary_key=True)

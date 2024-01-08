@@ -1,18 +1,19 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask import request, redirect, url_for, session, flash, abort
-from forms import SignUpForm, LoginForm, DashboardForm
+from forms import SignUpForm, LoginForm, DashboardForm, LoanApplicationForm
 from forms import WalletFundingForm, DashboardForm
 from models import db, User, LoanApplication, SavingsApplication
 import random
 from forms import WalletFundingForm, DocumentUploadForm
-from extensions import bcrypt, mail
 from flask_login import current_user
 from flask_login import login_required
-from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 main = Blueprint('main', __name__)
+
+mail = Mail()
 
 # Dummy data for user storage
 users = {}
@@ -35,8 +36,7 @@ def signup():
             return redirect(url_for('main.signup'))
 
         # Hash password before storing
-        hashed_password = bcrypt.generate_password_hash(form.password.data)\
-            .decode('utf-8')
+        hashed_password = generate_password_hash(form.password.data)
 
         new_user = User(
             name=form.name.data,
@@ -62,12 +62,20 @@ def login():
 
     if request.method == 'POST' and form.validate():
         user = User.query.filter_by(email=form.email_phone.data).first()
-        if user and bcrypt.check_password_hash(user.password,
-                                               form.password.data):
+        if user and check_password_hash(user.password, form.password.data):
             # Set user details in session
             session['user_email'] = user.email
             session['user_name'] = user.name
-            flash('Login successful', 'success')
+
+            # Check if the user is an admin
+            if user.is_admin:
+                session['is_admin'] = True
+                flash('Admin login successful', 'success')
+                return redirect(url_for('main.admin_dashboard'))
+            else:
+                session['is_admin'] = False
+                flash('Login successful', 'success')
+
             return redirect(url_for('main.dashboard'))
         else:
             flash('Invalid credentials. Please try again.', 'danger')
@@ -117,9 +125,7 @@ def logout():
     session.pop('user_email', None)
     session.pop('user_name', None)  # Clearing user name from session
     flash('You have been logged out.', 'info')
-    return redirect(url_for('main.index'))
-
-# additional features
+    return redirect(url_for('main.login'))
 
 
 @main.route('/fund_wallet', methods=['GET', 'POST'])
@@ -231,43 +237,31 @@ def savings_plan():
     return render_template('savings_plan.html')
 
 
-@main.route('/admin/dashboard')
-@login_required
+@main.route('/admin_dashboard')
+# @login_required
 def admin_dashboard():
-    if not current_user.is_admin:
-        abort(403)
-    return render_template('admin_dashboard.html')
+        return render_template('admin_dashboard.html')
 
 
-@main.route('/admin/users')
-@login_required
+@main.route('/admin_users')
+# @login_required
 def admin_users():
-    if not current_user.is_admin:
-        abort(403)
     users = User.query.all()
     return render_template('admin_users.html', users=users)
 
 
-@main.route('/admin/loan-applications')
-@login_required
+@main.route('/admin_loan_applications')
+# @login_required
 def admin_loan_applications():
-    if not current_user.is_admin:
-        abort(403)
-    loan_applications = LoanApplication.query.filter_by(
-        approval_status='pending'
-        ).all()
-    return render_template('admin_loan_applications.html',
-                           loan_applications=loan_applications)
+    loan_applications = LoanApplication.query.all()  # Fetch all loan applications
+    return render_template('admin_loan_applications.html', loan_applications=loan_applications)
 
 
-@main.route('/admin/savings-applications')
-@login_required
+@main.route('/admin_savings_applications')
+# @login_required
 def admin_savings_applications():
-    if not current_user.is_admin:
-        abort(403)
     # SavingsApplication model
-    savings_applications = SavingsApplication.query.filter_by(
-        approval_status='pending').all()
+    savings_applications = SavingsApplication
     return render_template('admin_savings_applications.html',
                            savings_applications=savings_applications)
 
@@ -311,3 +305,71 @@ def view_savings_applications():
     applications = SavingsApplication.query.all()
     return render_template('view_savings_applications.html',
                            applications=applications)
+
+
+@main.route('/bills-payment')
+def bills_payment():
+
+    return render_template('bills_payment.html')
+
+
+@main.route('/apply_loan', methods=['GET', 'POST'])
+def apply_loan():
+    if 'user_email' not in session:
+        flash('Please log in to apply for a loan.', 'warning')
+        return redirect(url_for('main.login'))
+
+    user = User.query.filter_by(email=session['user_email']).first()
+    if not user:
+        flash('User not found.', 'error')
+        return redirect(url_for('main.login'))
+
+    form = LoanApplicationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        # Create a new loan application instance
+        loan_application = LoanApplication(
+            user_id=user.id,
+            purpose=form.purpose.data,
+            business_name=form.business_name.data,
+            loan_amount=form.loan_amount.data,
+            tenure=form.tenure.data,
+            status='Pending'
+        )
+        db.session.add(loan_application)
+        db.session.commit()
+
+        # Send email notification (optional)
+        send_loan_application_email(user.email, loan_application.id)
+
+        flash('Your loan application has been submitted.', 'success')
+        return redirect(url_for('main.dashboard'))
+
+    return render_template('apply_loan.html', form=form)
+
+
+def send_loan_application_email(email, loan_application_id):
+    msg = Message('Loan Application Submitted',
+                  sender='amadasunese@gmail.com',
+                  recipients=[email])
+    msg.body = (
+        f'Your loan application with (ID number: {loan_application_id}) '
+        'has been submitted for processing.'
+    )
+
+    mail.send(msg)
+
+
+@main.route('/send_contact_email', methods=['POST'])
+def send_contact_email():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    message = request.form.get('message')
+
+    msg = Message("Contact Form Submission",
+                  sender=email,
+                  recipients=["amadasunese@gmail.com.com"])
+    msg.body = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+    mail.send(msg)
+    flash('Your message has been sent.', 'success')
+    return redirect(url_for('main.contact'))

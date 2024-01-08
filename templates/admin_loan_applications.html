@@ -18,13 +18,13 @@
         <tbody>
             {% for loan_application in pending_loan_applications %}
             <tr>
-                <td>{{ loan_application.id }}</td>
-                <td>{{ loan_application.user.name }}</td>
-                <td>{{ loan_application.purpose }}</td>
-                <td>{{ loan_application.business_name }}</td>
-                <td>{{ loan_application.loan_amount }}</td>
-                <td>{{ loan_application.tenure }}</td>
-                <td>{{ loan_application.status }}</td>
+                <td>Application ID: {{ application.id }}</td>
+                <td>User ID: {{ application.user_id }}</td>
+                <td>Purpose: {{ application.purpose }}</td>
+                <td>Business Name: {{ application.business_name }}</td>
+                <td>Loan Amount: {{ application.loan_amount }}</td>
+                <td>Tenure: {{ application.tenure }}</td>
+                <td>Status: {{ application.status }}</td>
             </tr>
             {% endfor %}
         </tbody>
