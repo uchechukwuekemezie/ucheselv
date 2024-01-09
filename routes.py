@@ -373,3 +373,16 @@ def send_contact_email():
     mail.send(msg)
     flash('Your message has been sent.', 'success')
     return redirect(url_for('main.contact'))
+
+
+@main.route('/delete_user/<int:user_id>')
+# @login_required  
+def delete_user(user_id):
+    user_to_delete = User.query.get(user_id)
+    if user_to_delete:
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        flash('User successfully removed', 'success')
+    else:
+        flash('User not found', 'error')
+    return redirect(url_for('main.admin_dashboard'))  
