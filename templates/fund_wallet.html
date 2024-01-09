@@ -1,22 +1,19 @@
 <!-- fund_wallet.html -->
-{% extends 'base.html' %}
-
-{% block title %}Fund Wallet{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}Fund Wallet{% endblock %} {% block
+content %}
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <h1 class="text-center">Fund Your Wallet</h1>
-            <form method="post">
-                {{ form.hidden_tag() }}
-                <div class="form-group">
-                    {{ form.amount.label(class="form-label") }}
-                    {{ form.amount(class="form-control") }}
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Add Funds</button>
-            </form>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1 class="text-center">Fund Your Wallet</h1>
+      <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          {{ form.amount.label(class="form-label") }} {{
+          form.amount(class="form-control") }}
         </div>
+        <button type="submit" class="btn btn-primary w-100">Add Funds</button>
+      </form>
     </div>
+  </div>
 </div>
 {% endblock %}
