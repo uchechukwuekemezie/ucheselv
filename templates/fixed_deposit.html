@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container_fd mt-4">
+  <h1>Explore Our Fixed Deposit Options</h1>
+  <p>
+    Welcome to our Fixed Deposit services, where we offer you a variety of
+    options to grow your savings securely. Fixed Deposits are an ideal choice if
+    you're looking for a risk-free investment with stable returns.
+  </p>
+
+  <h2>Our Fixed Deposit Plans</h2>
+  <ul>
+    <li>
+      <strong>Short-Term Deposits:</strong> Perfect for those seeking quick
+      returns. Tenures range from 30 days to 6 months with attractive interest
+      rates.
+    </li>
+    <li>
+      <strong>Medium-Term Deposits:</strong> Ideal for savers with a mid-range
+      investment horizon. Enjoy higher interest rates for tenures of 1 to 3
+      years.
+    </li>
+    <li>
+      <strong>Long-Term Deposits:</strong> Best suited for long-term financial
+      goals. Secure the highest interest rates for tenures extending beyond 3
+      years.
+    </li>
+  </ul>
+
+  <p>
+    Our Fixed Deposit accounts come with features like auto-renewal options,
+    loan facilities against deposits, and flexible interest payouts. Tailor your
+    deposit plan as per your convenience and financial goals.
+  </p>
+
+  <p>
+    Not sure which plan is right for you? Our
+    <a href="{{ url_for('main.calculator') }}" class="link"
+      >Savings Growth Calculator</a
+    >
+    can help you estimate your potential earnings. For more personalized
+    guidance, our team of dedicated financial advisors is here to assist you.
+  </p>
+
+  <p>
+    <a href="#get-started" class="btn btn-primary_fd"
+      >Get Started with a Fixed Deposit</a
+    >
+    or
+    <a href="{{ url_for('main.contact') }}" class="btn btn-secondary_fd"
+      >Contact an Advisor</a
+    >
+    to explore the best options for your savings.
+  </p>
+</div>
+{% endblock %}
