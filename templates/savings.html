@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="savings-cover"
+  style="background-image: url('{{ url_for('static', filename='images/saves.jpeg') }}');"
+>
+  <div class="cover-text">
+    <h1>Empower Your Future with Savings</h1>
+  </div>
+</div>
+
+<div class="savings-intro">
+  <h1>Savings</h1>
+  <p>
+    Discover the power of savings with TreasureTrove Loan and Savings Services.
+    Grow your wealth steadily and secure your financial future. Start with a
+    plan that suits your goals and use our savings calculator to see your
+    potential growth.
+  </p>
+</div>
+
+<div class="savings-options">
+  <a href="{{ url_for('main.savings_plan') }}" class="savings-link"
+    >Choose a Saving Plan</a
+  >
+  <a href="{{ url_for('main.calculator') }}" class="savings-link"
+    >Savings Calculator</a
+  >
+</div>
+{% endblock %}
